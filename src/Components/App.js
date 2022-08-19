@@ -8,20 +8,6 @@ import RequiredItems from "./RequiredItems";
 import GetMyLocationButton from "./GetMyLocationButton";
 import Map from "./Map";
 import Footer from "./Footer/Footer";
-// Imports for changing the browser icon dynamically
-import Sunny from '../assets/icons/sun.png'
-import Rain from '../assets/icons/rain.png'
-import Clouds from '../assets/icons/clouds.png'
-import ThunderStorm from '../assets/icons/thunderstorm.png'
-import Tornado from '../assets/icons/tornado.png'
-import SandStorm from '../assets/icons/sand_storm.png'
-import Sand from '../assets/icons/sand.png'
-import Mist from '../assets/icons/mist.png'
-import Haze from '../assets/icons/haze.png'
-import Drizzle from '../assets/icons/drizzle.png'
-import Snowy from '../assets/icons/snowy.png'
-import Smoke from '../assets/icons/smoke.png'
-import Logo from '../assets/icons/logo.png'
 
 export default function App() {
   const [error, setError] = useState(null);
@@ -83,65 +69,10 @@ export default function App() {
             setError(error);
           }
         )
-    }, 1000) // 1 second threshold 
+    }, 1000) // 1 second therhold 
 
       return () => clearTimeout(fetchData)
-  }, [city]);
-
-
-  useEffect(() => {  
-    const faviconUpdate = async () => {
-      const favicon = document.getElementById("favicon");
-      if (results) {
-        switch(results.weather[0].main) {
-          case 'Rain':
-            favicon.href = Rain;
-            break;
-          case 'Snow': 
-            favicon.href = Snowy;
-            break;
-          case 'Clear':
-            favicon.href = Sunny;
-            break;
-          case 'Clouds':
-            favicon.href = Clouds;
-            break;
-          case 'Tornado':
-            favicon.href = Tornado;
-            break;
-          case 'Drizzle':
-            favicon.href = Drizzle;
-            break;
-          case 'Thunderstorm':
-            favicon.href = ThunderStorm;
-            break;
-          case 'Squall':
-          case 'Ash':
-          case 'Dust':
-            favicon.href = SandStorm;
-            break;
-          case 'Sand':
-            favicon.href = Sand;
-            break;
-          case 'Haze':
-            favicon.href = Haze;
-            break;
-          case 'Smoke':
-            favicon.href = Smoke;
-            break;
-          case 'Mist':
-          case 'Fog':
-            favicon.href = Mist;
-            break;
-          default:
-            favicon.href = Logo;
-            break;
-        }
-      } 
-    };
-
-    faviconUpdate();  
-  }, [results]);
+  }, [city])
 
   if (error) {
     return <ErrorComponent error={error} />;
